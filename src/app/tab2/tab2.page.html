@@ -13,5 +13,56 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <!-- <ion-content>
+    <ion-list>
+      <ion-item *ngFor="let item of shoppingItems; let i = index">
+        <ion-label>{{ item.name }}</ion-label>
+        <ion-input type="number" placeholder="Preço" [(ngModel)]="shoppingItems[i].price" (ionChange)="updateTotal()"></ion-input>
+        <ion-input type="number" placeholder="Quantidade" [(ngModel)]="shoppingItems[i].quantity" (ionChange)="updateTotal()"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <ion-item>
+      <ion-label>Novo Item:</ion-label>
+      <ion-input placeholder="Nome do Item" [(ngModel)]="newItemName"></ion-input>
+      <ion-button (click)="addItem()">Adicionar</ion-button>
+    </ion-item>
+
+    <ion-item *ngIf="shoppingItems.length > 0">
+      <ion-label>Total: R$ {{ total }}</ion-label>
+    </ion-item>
+  </ion-content> -->
+
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of shoppingItems; let i = index">
+      <ion-label>{{ item.name }}</ion-label>
+      <ion-input type="number" placeholder="Preço" [(ngModel)]="shoppingItems[i].price" (ionChange)="updateTotal()"></ion-input>
+      <ion-input type="number" placeholder="Quantidade" [(ngModel)]="shoppingItems[i].quantity" (ionChange)="updateTotal()"></ion-input>
+         <ion-button (click)="removeItem(i)" color="danger">Remover</ion-button>
+        </ion-item>
+  </ion-list>
+
+  <ion-item>
+    <ion-label>Novo Item:</ion-label>
+    <ion-input placeholder="Nome do Item" [(ngModel)]="newItemName"></ion-input>
+    <ion-button (click)="addItem()">Adicionar</ion-button>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Limite Total da Compra:</ion-label>
+    <ion-input type="number" [(ngModel)]="totalLimit" (ionChange)="updateTotal()"></ion-input>
+  </ion-item>
+
+  <ion-item *ngIf="shoppingItems.length > 0">
+    <ion-label>Total: R$ {{ total }}</ion-label>
+    <ion-label *ngIf="totalLimit">Limite: R$ {{ totalLimit }}</ion-label>
+    <ion-label *ngIf="totalLimit && total > totalLimit" color="danger">Total excede o limite!</ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-button expand="full" (click)="clearList()">Limpar Lista</ion-button>
+  </ion-item>
+  
 </ion-content>
